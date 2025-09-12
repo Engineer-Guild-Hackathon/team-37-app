@@ -1,18 +1,17 @@
-# ベースイメージ
-FROM node:20-alpine
+# Node.js公式イメージを利用
+FROM node:18
 
 # 作業ディレクトリ
-WORKDIR /working
+WORKDIR /app
 
-# frontend の package.json をコピーして依存関係をインストール
-COPY frontend/package*.json ./
-RUN npm install
+# Hardhatなど必要パッケージをインストール
+RUN npm install -g hardhat
 
-# アプリのソースをコピー（appディレクトリ含む）
-COPY frontend/ ./
+# OpenZeppelinも入れておく
+RUN npm install @openzeppelin/contracts
 
-# ポート公開
-EXPOSE 3000
+# ソースコードをコピー
+COPY . .
 
-# デフォルトコマンド
-#CMD ["npm", "run", "dev"]
+# デフォルトコマンド（シェルを起動）
+CMD [ "bash" ]
