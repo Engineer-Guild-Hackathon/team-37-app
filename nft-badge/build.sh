@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -e
-
 # 既存のイメージがあれば削除
 if docker image inspect egh_2025_img > /dev/null 2>&1; then
     echo "既存のイメージ egh_2025_img を削除します..."

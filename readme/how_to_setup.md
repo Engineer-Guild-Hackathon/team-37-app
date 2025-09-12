@@ -8,7 +8,7 @@ Dockerが入っていない方はまず、[こちらからインストール](ht
 
 ・スクリプトファイルに権限を付加
 ```
-$ chmod +x build.sh run.sh
+$ chmod +x build.sh run.sh setup.sh
 ```
 ・イメージの作成
 ```
