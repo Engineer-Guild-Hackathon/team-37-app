@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: Go Supabase DAO API
+  description: Supabase の daos テーブルを操作する Go バックエンド API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: ローカル開発用サーバー
+
+paths:
+  /:
+    get:
+      summary: サーバーの動作確認
+      description: "Hello, Go Backend! を返す"
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /daos:
+    get:
+      summary: DAOの一覧を取得
+      description: ページネーション付きでDAOのリストを取得
+      parameters:
+        - name: page
+          in: query
+          description: 取得するページ番号 (1から)
+          required: false
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: DAO一覧
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DAO'
+                  count:
+                    type: integer
+                  page:
+                    type: integer
+        '500':
+          description: サーバーエラー
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      summary: DAOを新規作成
+      requestBody:
+        description: 作成するDAOデータ
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDAO'
+      responses:
+        '201':
+          description: 作成成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DAO'
+        '400':
+          description: リクエストエラー
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: サーバーエラー
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /daos/{id}:
+    delete:
+      summary: DAOを削除
+      parameters:
+        - name: id
+          in: path
+          description: 削除するDAOのID
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 削除成功 (No Content)
+        '404':
+          description: DAOが存在しない
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: サーバーエラー
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    DAO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: DAOのID
+        name:
+          type: string
+          description: DAO名
+        created_at:
+          type: string
+          format: date-time
+          description: 作成日時
+
+    CreateDAO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: DAO名
+      required:
+        - name
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string

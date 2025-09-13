@@ -1,42 +1,21 @@
-# ここにチーム番号とチーム名を入れてください
+# チーム37：四鍵
 
 このリポジトリはハッカソン提出用の雛形です。以下の項目をすべて埋めてください。
 
 ---
 
 ## チーム情報
-- チーム番号: （ここに記入）
-- チーム名: （ここに記入）
-- プロダクト名: （ここに記入）
-- メンバー: （GitHubアカウントまたは名前を列挙）
-
+- チーム番号: 37
+- チーム名: 四鍵
+- プロダクト名: NFT技術を用いた学習DAOサービス
+- メンバー: 
+    - 乙戸慎太郎：O2D-S
+    - 駒月柊平：shuheikomatsuki
+    - 酒井宏太朗：Koutaro-SAKAI
+    - 高木響貴：andsider
 ---
 
 ## デモ　/ プレゼン資料
 - デモURL: 
-- プレゼンURL：
+- プレゼンURL： https://www.canva.com/design/DAGyw_zS8Lw/lqMx7Esh4lnCk-sf_Yxq0w/edit
 
-
----
-
-# FrontEnd実行方法
-1. リポジトリをクローン
-```bash
-git clone https://github.com/Engineer-Guild-Hackathon/team-37-app.git
-cd team-37-app/frontend
-```
-
-2. 依存関係のインストール
-```bash
-npm install
-```
-
-3. 開発サーバーを起動
-```bash
-npm run dev
-```
-
-4. ブラウザでアクセス
-```bash
-http://localhost:3000
-```
