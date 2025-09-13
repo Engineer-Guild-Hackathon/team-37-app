@@ -1,16 +1,22 @@
-※締切が迫っておりますので、進捗をできる限りアップするようにします...
 # 行なったこと
 ## STEP 1: ウォレットの準備
 MetaMaskを、Firefoxの拡張版でインストールしました。  
-そして、Polygon Testnet（Polygon Amoy Testnet）を手動でネットワークに追加しました。  
+そして、Polygon Testnet（Polygon Amoy Testnet）を手動でネットワークに追加しました。
+
+<img src="../img/amoy_network.png" width="70%" />
+
 「Polygon Amoy Testnet」ではなく「Amoy」が正式名かもしれません。
 色々なブログサイトを見ると、トークンにMATICが使用されているのですが、POLに移行したそうなので、トークンはPOLに指定しました。
 ## STEP 2: テスト用トークンの入手
 Polygon Testnetのfaucet（蛇口）からPOLを請求しました。  
-MetaMaskを確認したところ、「$0.03, 0.1 POL」となっていました。
+GitHubによる認証は404エラーだったので、X.COMを用いました。
+
+![PolygonFaucet](../img/polygon_faucet.png)
+MetaMaskを確認したところ、「$0.03, 0.1 POL」となっていました。  
+もっとPOLが欲しい場合は、24時間以上空けたり「Get Bulk POL Test Tokens」が必要そうです。
 ## STEP 3: 開発環境を整える
 Dockerfileの通り、Hardhatを使用することにしました。  
-コンテナに入った後、以下を実行してインストールを行いました。
+コンテナに入った後、以下を実行することでインストールhardhatなどをインストールできるよにしました。
 ```
 # ./setup.sh
 ```
@@ -34,10 +40,46 @@ BadgeNFT.solを追加しました。
   ...
 ```
 資金不足が原因なら、断念するしかなさそう、という感じです...。
+### 必要資金の見積もり
+以下によると、0.15 POL必要そうです。
+```
+# npx hardhat console --network amoy
+> const factory = await ethers.getContractFactory("BadgeNFT");
+undefined
+> 
+> // コンストラクタの引数を渡す
+undefined
+> const deployTx = factory.getDeployTransaction("MyBadgeNFT", "MBN");
+undefined
+> 
+> // デプロイに必要なガスを推定
+undefined
+> const gasEstimate = await factory.signer.estimateGas(deployTx);
+undefined
+> 
+> // ガス価格を取得
+undefined
+> const gasPrice = await ethers.provider.getGasPrice();
+undefined
+> 
+> // 出力
+undefined
+> console.log("Estimated gas:", gasEstimate.toString());
+Estimated gas: 1971656
+undefined
+> console.log("Gas price:", gasPrice.toString());
+Gas price: 76767567149
+undefined
+> console.log("Total needed (wei):", gasEstimate.mul(gasPrice).toString());
+Total needed (wei): 151359234374728744
+undefined
+> console.log("Total needed (POL):", ethers.utils.formatEther(gasEstimate.mul(gasPrice)));
+Total needed (POL): 0.151359234374728744
+```
 ## STEP 6: メタデータ（証明情報）を用意
+STEP5完了待ち
 ## STEP 7: 発行テスト
-
-
+STEP5完了待ち
 
 # ファイルの追加・書き換えについて
 ## BadgeNFT.sol

@@ -5,12 +5,12 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract BadgeNFT is ERC721, Ownable {
-    uint256 private _nextTokenId = 1;
+    uint256 private _tokenIdCounter;
 
-    constructor() ERC721("Learning Badge", "LBADGE") Ownable(msg.sender) {}
+    constructor(string memory name, string memory symbol) ERC721(name, symbol) Ownable(msg.sender) {}
 
     function mint(address to) public onlyOwner {
-        _safeMint(to, _nextTokenId);
-        _nextTokenId++;
+        _tokenIdCounter++;
+        _safeMint(to, _tokenIdCounter);
     }
 }

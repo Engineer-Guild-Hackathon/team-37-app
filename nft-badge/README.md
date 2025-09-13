@@ -1,13 +1,3 @@
-# Sample Hardhat Project
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+# nft-badgeについて
+[how_to_setup.md](../readme/how_to_setup.md "how_to_setup")を参照して、まずはDockerのコンテナ内に入ってください。  
+次に[what_I_made.md](../readme/what_I_made.md "what_I_made")を参照することで、私(作成者)の作業を追うことができると思います。
